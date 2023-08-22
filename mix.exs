@@ -32,7 +32,11 @@ defmodule SendGmail.MixProject do
       {:goth, "~> 1.4"},
       {:mail, ">= 0.0.0"},
       {:mox, "~> 1.0", only: [:test]},
-      {:mix_test_watch, git: "https://github.com/rogersanctus/mix-test.watch", branch: :master, only: [:dev, :test], runtime: false},
+      {:mix_test_watch,
+       git: "https://github.com/rogersanctus/mix-test.watch",
+       branch: :master,
+       only: [:dev, :test],
+       runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end

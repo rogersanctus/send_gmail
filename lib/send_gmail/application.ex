@@ -19,6 +19,7 @@ defmodule SendGmail.Application do
 
   defp goth_source() do
     dotenv = Application.get_env(:send_gmail, :dotenv)
+
     credentials = %{
       "client_id" => Map.get(dotenv, "client_id"),
       "client_secret" => Map.get(dotenv, "client_secret"),

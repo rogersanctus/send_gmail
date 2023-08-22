@@ -3,7 +3,7 @@ defmodule SendGmail.Goth do
   Goth wrapper to implement GothBehavior
   """
 
-  #@callback fetch() :: {:ok, Goth.Token.t()} | {:error, any()}
+  # @callback fetch() :: {:ok, Goth.Token.t()} | {:error, any()}
 
   @behaviour SendGmail.Goth.Behavior
 
