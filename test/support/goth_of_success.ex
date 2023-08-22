@@ -6,6 +6,6 @@ defmodule SendGmail.GothOfSuccess do
   @behaviour SendGmail.Goth.Behavior
 
   def fetch() do
-    {:ok, %Goth.Token{token: "aquele_token_gostosinho", expires: 1, scope: "all", type: "Bearer"}}
+    {:ok, %Goth.Token{token: "that fresh and tasting token", expires: 1, scope: "all", type: "Bearer"}}
   end
 end

@@ -11,7 +11,7 @@ defmodule SendGmail.GothTest do
 
       client = Application.get_env(:send_gmail, :goth_client)
 
-      assert match?({:ok, %Goth.Token{token: "aquele_token_gostosinho"}}, client.fetch())
+      assert match?({:ok, %Goth.Token{token: "that fresh and tasting token"}}, client.fetch())
     end
   end
 end
