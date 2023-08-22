@@ -3,7 +3,7 @@ defmodule SendGmailTest do
 
   use ExUnit.Case, async: false
 
-  test "greets the world" do
+  test "the environment loads correctly from .env files" do
     dotenv = Application.get_env(:send_gmail, :dotenv)
 
     assert match?(
