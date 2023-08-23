@@ -34,7 +34,7 @@ defmodule SendGmail.MailSender do
     mailer_client = Application.get_env(:send_gmail, :mailer_client, SendGmail.Mailer)
 
     case mailer_client.deliver(email, access_token: token) do
-      {:ok, _} -> {:ok, :mail_sent}
+      {:ok, deliver_result} -> {:ok, [:mail_sent, deliver_result]}
       {:error, error} -> {:error, error}
       _ -> {:error, :unknown_send_mail_error}
     end
