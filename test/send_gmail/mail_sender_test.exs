@@ -16,6 +16,10 @@ defmodule SendGmail.MailSenderTest do
     "A nice to see e-mail message."
   end
 
+  defp mailer_client_success() do
+    "mailer client success"
+  end
+
   describe("MailSender") do
     test "if it fails when Goth can get a token from Google OAuth2" do
       Mox.stub_with(SendGmail.GothMock, SendGmail.GothOfFailure)
@@ -57,7 +61,7 @@ defmodule SendGmail.MailSenderTest do
         assert match?(^contact, from)
         assert match?([^contact], to)
 
-        {:ok, "mailer client success"}
+        {:ok, mailer_client_success()}
       end)
 
       MailSender.send_message(message(), sender())
@@ -67,10 +71,11 @@ defmodule SendGmail.MailSenderTest do
 
     test "if it can send a message to the sender contact when everything is right" do
       Mox.stub_with(SendGmail.GothMock, SendGmail.GothOfSuccess)
-      Mox.stub(SendGmail.MailerMock, :deliver, fn _, _ -> {:ok, "mailer client success"} end)
+      Mox.stub(SendGmail.MailerMock, :deliver, fn _, _ -> {:ok, mailer_client_success()} end)
 
+      mailer_client_success = mailer_client_success()
       result = MailSender.send_message(message(), sender())
-      assert match?({:ok, [:mail_sent, "mailer client success"]}, result)
+      assert match?({:ok, [:mail_sent, ^mailer_client_success]}, result)
     end
   end
 end
