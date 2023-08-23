@@ -23,7 +23,9 @@ defmodule SendGmail.MailSenderTest do
   describe("MailSender") do
     test "if it fails when Goth can get a token from Google OAuth2" do
       Mox.stub_with(SendGmail.GothMock, SendGmail.GothOfFailure)
-      Mox.stub(SendGmail.MailerMock, :deliver, fn _email, _config -> {:ok, "unreached"} end)
+
+      # Expects the deliver function is not called (0 times)
+      Mox.expect(SendGmail.MailerMock, :deliver, 0, fn _email, _config -> {:ok, "unreached"} end)
 
       result = MailSender.send_message(message(), sender())
 
@@ -46,6 +48,7 @@ defmodule SendGmail.MailSenderTest do
     test "if mailer client is called with the right arguments" do
       Mox.stub_with(SendGmail.GothMock, SendGmail.GothOfSuccess)
 
+      # Expects the deliver function is called and called once
       Mox.expect(SendGmail.MailerMock, :deliver, 1, fn %Swoosh.Email{
                                                          text_body: text_body,
                                                          from: from,
