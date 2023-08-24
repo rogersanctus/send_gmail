@@ -19,21 +19,17 @@ defmodule SendGmail.MailSender do
   end
 
   def send_message(message, sender) when is_binary(message) do
-    goth_client = Application.get_env(:send_gmail, :goth_client, SendGmail.Goth)
-
     email =
       compose_email(sender, message)
 
-    goth_client.fetch()
+    SendGmail.Goth.fetch()
     |> auth_send_email(email)
   end
 
   defp auth_send_email({:error, error}, _email), do: {:error, error}
 
   defp auth_send_email({:ok, %{token: token}}, email) do
-    mailer_client = Application.get_env(:send_gmail, :mailer_client, SendGmail.Mailer)
-
-    case mailer_client.deliver(email, access_token: token) do
+    case SendGmail.Mailer.deliver(email, access_token: token) do
       {:ok, deliver_result} -> {:ok, [:mail_sent, deliver_result]}
       {:error, error} -> {:error, error}
       _ -> {:error, :unknown_send_mail_error}

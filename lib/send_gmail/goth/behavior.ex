@@ -1,4 +1,4 @@
-defmodule SendGmail.Goth.Behavior do
+defmodule SendGmail.Goth.Behaviour do
   @moduledoc """
   Defines the behaviour of Goth module
   """

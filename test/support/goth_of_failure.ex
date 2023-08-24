@@ -3,7 +3,7 @@ defmodule SendGmail.GothOfFailure do
   A Goth implementation with sucess only functions
   """
 
-  @behaviour SendGmail.Goth.Behavior
+  @behaviour SendGmail.Goth.Behaviour
 
   def fetch() do
     {:error, goth_error()}
