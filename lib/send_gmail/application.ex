@@ -6,7 +6,7 @@ defmodule SendGmail.Application do
   def start(_type, _args) do
     children = [
       {Finch, [name: SendGmail.Finch]},
-      {Goth, [name: SendGmail.Goth, source: goth_source()]}
+      {Goth, [name: SendGmail.Goth.Client, source: goth_source()]}
     ]
 
     opts = [
